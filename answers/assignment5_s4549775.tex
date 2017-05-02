@@ -29,6 +29,16 @@ iptables --policy OUTPUT DROP
 iptables --policy FORWARD DROP
 	\end{lstlisting}
 
+	Now we can selectively enable all traffic we want to accept.
+
+	\begin{lstlisting}
+# <interface> could be eth0, for example
+
+# allow incoming HTTP
+iptables -i <interface> --append INPUT --protocol tcp --dport 80 --jump ACCEPT
+# allow outgoing HTTP
+iptables -o <interface> --append OUTPUT --protocol tcp --sport 80 --jump ACCEPT
+	\end{lstlisting}
 	\item %b
 	\item %c
 \end{enumerate}
