@@ -20,6 +20,15 @@
 \section{} %1
 \begin{enumerate}[a]
 	\item %a
+	The first thing we want to do is set a policy that applies to all traffic that does not math any of the rules. The firewall is supposed to be as restrictive as possible so we drop all packages not matching any rule.
+
+	\begin{lstlisting}[language=bash]
+# "--table filter" is the default
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+	\end{lstlisting}
+
 	\item %b
 	\item %c
 \end{enumerate}
