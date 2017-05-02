@@ -35,9 +35,9 @@ iptables --policy FORWARD DROP
 # <interface> could be eth0, for example
 
 # allow incoming HTTP
-iptables -i <interface> --append INPUT --protocol tcp --dport 80 --jump ACCEPT
+iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.2 --dport 80 --jump ACCEPT
 # allow outgoing HTTP
-iptables -o <interface> --append OUTPUT --protocol tcp --sport 80 --jump ACCEPT
+iptables -o <interface> --append OUTPUT --protocol tcp --source 200.123.123.2 --sport 80 --jump ACCEPT
 	\end{lstlisting}
 	\item %b
 	\item %c
