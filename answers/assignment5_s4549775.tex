@@ -162,6 +162,9 @@ iptables -i eth0 --append FORWARD --protocol icmp -s 10.10.10.11 -d 20.20.20.0/2
 
 	An attacker would need to increment the sequence number but he cannot generate a MAC for the new "enchilada" because he lacks the key needed.
 	\item %d
+	The IP addresses in the new header are just copied over from the old header (which is encrypted), so the same IPs are visible as before.
+
+	The payload of the new IP header is an ESP package so the protocol number 50 is used.
 \end{enumerate}
 
 \section{} %4
