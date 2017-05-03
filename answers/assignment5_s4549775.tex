@@ -117,16 +117,16 @@ iptables -i eth0 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --dport 443 -j ACCEP
 iptables -o eth0 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --sport 443 -j ACCEPT
 
 # allow secured SMTP for 10.10.10.10
-iptables -i eth1 -A INPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 465 --jump ACCEPT
-iptables -o eth1 -A OUTPUT --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 465 --jump ACCEPT
-iptables -i eth0 -A INPUT --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 465 --jump ACCEPT
-iptables -o eth0 -A OUTPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 465 --jump ACCEPT
+iptables -i eth1 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 465 --jump ACCEPT
+iptables -o eth1 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 465 --jump ACCEPT
+iptables -i eth0 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 465 --jump ACCEPT
+iptables -o eth0 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 465 --jump ACCEPT
 
 # allow secured IMAP for 10.10.10.10
-iptables -i eth1 -A INPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 993 --jump ACCEPT
-iptables -o eth1 -A OUTPUT --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
-iptables -i eth0 -A INPUT --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
-iptables -o eth0 -A OUTPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 993 --jump ACCEPT
+iptables -i eth1 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 993 --jump ACCEPT
+iptables -o eth1 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
+iptables -i eth0 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
+iptables -o eth0 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 993 --jump ACCEPT
 \end{lstlisting}
 
 \section{} %3
