@@ -54,6 +54,7 @@ iptables -i <interface> --append INPUT --protocol icmp --icmp-type 0 --jump ACCE
 # allow outgoing ICMP requests
 iptables -o <interface> --append OUTPUT --protocol icmp --icmp-type 8 --jump ACCEPT
 	\end{lstlisting}
+	\clearpage
 	\item %b
 	\begin{lstlisting}[language=bash]
 knoppix@Microknoppix:~$ sudo iptables --list
