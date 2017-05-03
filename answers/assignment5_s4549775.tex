@@ -141,6 +141,11 @@ iptables -o eth0 -A OUTPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --spo
 		\item Generate a new IP header for the whole payload ("enchilada" + MAC).
 	\end{enumerate}
 	\item %b
+	Assume a package is sent from A to B.
+	\begin{description}
+		\item[Integrity] is achieved by appending the MAC to the "enchilada" for which the private key of A is used. An attacker cannot generate a valid MAC for a tampered message.
+		\item[Confidentiality] The original datagram (together with some metadata) is encrypted with the public key of B. An attacker cannot decrypt the original payload.
+	\end{description}
 	\item %c
 	The protocol adds a sequence number to the generate the "enchilada" that serves to prevent replay attacks. The sequence number is used when generating the MAC.
 
