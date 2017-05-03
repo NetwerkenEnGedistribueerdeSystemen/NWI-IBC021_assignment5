@@ -56,6 +56,10 @@ iptables -o <interface> --append OUTPUT --protocol icmp --icmp-type 8 --jump ACC
 	\end{lstlisting}
 	\item %b
 	\item %c
+	\begin{lstlisting}
+# allow incoming HTTP
+iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.2 --dport 80 --jump ACCEPT --state ESTABLISHED
+	\end{lstlisting}
 \end{enumerate}
 
 \section{} %2
