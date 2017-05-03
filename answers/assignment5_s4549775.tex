@@ -56,6 +56,8 @@ iptables -o <interface> --append OUTPUT --protocol icmp --icmp-type 8 --jump ACC
 	\end{lstlisting}
 	\item %b
 	\item %c
+	Using state we can disallow incoming HTTP traffic that does not belong to a conversation that was initiated from within the network. This way we can only receive HTTP from a server we contacted first.
+
 	\begin{lstlisting}
 # allow incoming HTTP
 iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.2 --dport 80 --jump ACCEPT --state ESTABLISHED
