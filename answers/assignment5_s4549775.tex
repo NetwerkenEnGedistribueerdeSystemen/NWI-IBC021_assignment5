@@ -81,6 +81,9 @@ iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.
 	\item %b
 	You can see the server's IP and port in the "Dst" and "Dst Port" fields. IP: 87.248.116.12, Port: 443.
 	\item %c
+	Normally the server would respond with a sequence number that is the previous ACK plus 1. The previous ACK is 5247 so the next sequence number would be 5248. However the next packet is also sent by the client and it does not make sense to acknowledge your own packets.
+
+	We asked Jon about this but he couldn't help us.
 	\item %d
 	Packet 14 contains 3 SSL records. One is a "Client Key Exchange" record, another one is a "Change Cipher Spec" record a, and the last one is a "Multiple Handshake Records" record.
 	\item %e
