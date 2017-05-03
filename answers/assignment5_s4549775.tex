@@ -55,6 +55,25 @@ iptables -i <interface> --append INPUT --protocol icmp --icmp-type 0 --jump ACCE
 iptables -o <interface> --append OUTPUT --protocol icmp --icmp-type 8 --jump ACCEPT
 	\end{lstlisting}
 	\item %b
+	\begin{lstlisting}[language=bash]
+knoppix@Microknoppix:~$ sudo iptables --list
+Chain INPUT (policy DROP)
+target     prot opt source               destination
+ACCEPT     tcp  --  anywhere             200.123.123.2        tcp dpt:http
+ACCEPT     tcp  --  1.2.3.4              anywhere             tcp spt:ssmtp
+ACCEPT     tcp  --  1.2.3.4              anywhere             tcp spt:imaps
+ACCEPT     icmp --  anywhere             anywhere             icmp echo-reply
+
+Chain FORWARD (policy DROP)
+target     prot opt source               destination
+
+Chain OUTPUT (policy DROP)
+target     prot opt source               destination
+ACCEPT     tcp  --  anywhere             1.2.3.4              tcp dpt:ssmtp
+ACCEPT     tcp  --  200.123.123.2        anywhere             tcp spt:http
+ACCEPT     tcp  --  anywhere             1.2.3.4              tcp dpt:imaps
+ACCEPT     icmp --  anywhere             anywhere             icmp echo-request
+	\end{lstlisting}
 	\item %c
 	Using state we can disallow incoming HTTP traffic that does not belong to a conversation that was initiated from within the network. This way we can only receive HTTP from a server we contacted first.
 
