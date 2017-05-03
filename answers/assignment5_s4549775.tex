@@ -43,6 +43,11 @@ iptables -o <interface> --append OUTPUT --protocol tcp --source 200.123.123.2 --
 iptables -i <interface> --append INPUT --protocol tcp --source 1.2.3.4 --sport 465 --jump ACCEPT
 # allow secured outgoing SMTP traffic
 iptables -o <interface> --append OUTPUT --protocol tcp --destination 1.2.3.4 --dport 465 --jump ACCEPT
+
+# allow secured incoming IMAP
+iptables -i <interface> --append INPUT --protocol tcp --source 1.2.3.4 --sport 993 --jump ACCEPT
+# allow secured outgoing IMAP
+iptables -o <interface> --append OUTPUT --protocol tcp --destination 1.2.3.4 --dport 993 --jump ACCEPT
 	\end{lstlisting}
 	\item %b
 	\item %c
