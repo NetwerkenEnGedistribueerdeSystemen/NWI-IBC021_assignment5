@@ -38,6 +38,11 @@ iptables --policy FORWARD DROP
 iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.2 --dport 80 --jump ACCEPT
 # allow outgoing HTTP
 iptables -o <interface> --append OUTPUT --protocol tcp --source 200.123.123.2 --sport 80 --jump ACCEPT
+
+# allow secured incoming SMTP traffic
+iptables -i <interface> --append INPUT --protocol tcp --source 1.2.3.4 --sport 465 --jump ACCEPT
+# allow secured outgoing SMTP traffic
+iptables -o <interface> --append OUTPUT --protocol tcp --destination 1.2.3.4 --dport 465 --jump ACCEPT
 	\end{lstlisting}
 	\item %b
 	\item %c
