@@ -84,6 +84,15 @@ iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.
 \end{enumerate}
 
 \section{} %2
+\begin{lstlisting}[language=bash]
+ifconfig eth0 20.20.20.1/24 up
+ifconfig eth1 10.10.10.1/24 up
+
+# disallow everything
+iptables --policy INPUT DROP
+iptables --policy FORWARD DROP
+iptables --policy OUTPUT DROP
+\end{lstlisting}
 
 \section{} %3
 \begin{enumerate}[a]
