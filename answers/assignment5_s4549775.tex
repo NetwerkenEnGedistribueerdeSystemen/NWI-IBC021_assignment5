@@ -133,6 +133,9 @@ iptables -o eth0 -A OUTPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --spo
 	\item %a
 	\item %b
 	\item %c
+	The protocol adds a sequence number to the generate the "enchilada" that serves to prevent replay attacks. The sequence number is used when generating the MAC.
+
+	An attacker would need to increment the sequence number but he cannot generate a MAC for the new "enchilada" because he lacks the key needed.
 	\item %d
 \end{enumerate}
 
