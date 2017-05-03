@@ -127,6 +127,16 @@ iptables -i eth1 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sp
 iptables -o eth1 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
 iptables -i eth0 -A FORWARD --protocol tcp -s 10.10.10.10 -d 20.20.20.20.11 --dport 993 --jump ACCEPT
 iptables -o eth0 -A FORWARD --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --sport 993 --jump ACCEPT
+
+# allow ICMP traceroute and ping
+iptables -i eth1 --append FORWARD --protocol icmp -d 10.10.10.10 -s 20.20.20.0/24 --icmp-type echo-reply --jump ACCEPT
+iptables -o eth1 --append FORWARD --protocol icmp -s 10.10.10.10 -d 20.20.20.0/24 --icmp-type echo-request --jump ACCEPT
+iptables -o eth0 --append FORWARD --protocol icmp -d 10.10.10.10 -s 20.20.20.0/24 --icmp-type echo-reply --jump ACCEPT
+iptables -i eth0 --append FORWARD --protocol icmp -s 10.10.10.10 -d 20.20.20.0/24 --icmp-type echo-request --jump ACCEPT
+iptables -i eth1 --append FORWARD --protocol icmp -d 10.10.10.11 -s 20.20.20.0/24 --icmp-type echo-reply --jump ACCEPT
+iptables -o eth1 --append FORWARD --protocol icmp -s 10.10.10.11 -d 20.20.20.0/24 --icmp-type echo-request --jump ACCEPT
+iptables -o eth0 --append FORWARD --protocol icmp -d 10.10.10.11 -s 20.20.20.0/24 --icmp-type echo-reply --jump ACCEPT
+iptables -i eth0 --append FORWARD --protocol icmp -s 10.10.10.11 -d 20.20.20.0/24 --icmp-type echo-request --jump ACCEPT
 \end{lstlisting}
 
 \section{} %3
