@@ -194,6 +194,11 @@ iptables -i eth0 --append FORWARD --protocol icmp -s 10.10.10.11 -d 20.20.20.0/2
 
 	If Eve inserts a bogus packet, she cannot generate the digital signature (because she does not have the necessary private keys). The receiving client hashed the message, decrypts the digital signature and compares the two. They do not match and the packet is dropped.
 	\item %b
+	If we assume that Eve can interchange TCP segments in an SSL section, that would mean there are no sequence numbers because otherwise she could not do that.
+
+	If Eve deletes packages form the stream they will just be resent. As long as she drops the packages she can disrupt the service but as soon as she stops the package will arrive.
+
+	If she could ACK the packages she drops they would not be resent and she could do permanent damage but I do not think she can do that.
 \end{enumerate}
 
 \end{document}
