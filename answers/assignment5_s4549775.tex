@@ -131,6 +131,15 @@ iptables -o eth0 -A OUTPUT --protocol tcp -d 10.10.10.10 -s 20.20.20.20.11 --spo
 \section{} %3
 \begin{enumerate}[a]
 	\item %a
+	You start with the original datagram (header + payload) and perform these steps:
+
+	\begin{enumerate}
+		\item Append padding for encryption and the type of the original datagram
+		\item Encrypt the resulting message (the blue parts).
+		\item Prepend the ESP header (pink) consisting of the SPI (Security Parameter Index) and sequence number. The resulting package is called "enchilada".
+		\item Use the SA (Security Association) to generate a MAC (Message Authentication Code) and append it to the "enchilada" (yellow).
+		\item Generate a new IP header for the whole payload ("enchilada" + MAC).
+	\end{enumerate}
 	\item %b
 	\item %c
 	The protocol adds a sequence number to the generate the "enchilada" that serves to prevent replay attacks. The sequence number is used when generating the MAC.
