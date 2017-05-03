@@ -92,6 +92,28 @@ ifconfig eth1 10.10.10.1/24 up
 iptables --policy INPUT DROP
 iptables --policy FORWARD DROP
 iptables --policy OUTPUT DROP
+
+# allow HTTP for 10.10.10.10 and 10.10.10.11
+iptables -i eth1 -A FORWARD -d 10.10.10.10 -s 20.20.20.0/24 --sport 80 -j ACCEPT
+iptables -o eth1 -A FORWARD -s 10.10.10.10 -d 20.20.20.0/24 --dport 80 -j ACCEPT
+iptables -i eth1 -A FORWARD -d 10.10.10.11 -s 20.20.20.0/24 --sport 80 -j ACCEPT
+iptables -o eth1 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --dport 80 -j ACCEPT
+
+iptables -i eth0 -A FORWARD -s 10.10.10.10 -d 20.20.20.0/24 --dport 80 -j ACCEPT
+iptables -o eth0 -A FORWARD -d 10.10.10.10 -s 20.20.20.0/24 --sport 80 -j ACCEPT
+iptables -i eth0 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --dport 80 -j ACCEPT
+iptables -o eth0 -A FORWARD -d 10.10.10.11 -s 20.20.20.0/24 --sport 80 -j ACCEPT
+
+# allow HTTPS for 10.10.10.10 and 10.10.10.11
+iptables -i eth1 -A FORWARD -d 10.10.10.10 -s 20.20.20.0/24 --dport 443 -j ACCEPT
+iptables -o eth1 -A FORWARD -s 10.10.10.10 -d 20.20.20.0/24 --dport 443 -j ACCEPT
+iptables -i eth1 -A FORWARD -d 10.10.10.11 -s 20.20.20.0/24 --dport 443 -j ACCEPT
+iptables -o eth1 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --dport 443 -j ACCEPT
+
+iptables -i eth0 -A FORWARD -s 10.10.10.10 -d 20.20.20.0/24 --dport 443 -j ACCEPT
+iptables -o eth0 -A FORWARD -d 10.10.10.10 -s 20.20.20.0/24 --sport 443 -j ACCEPT
+iptables -i eth0 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --dport 443 -j ACCEPT
+iptables -o eth0 -A FORWARD -s 10.10.10.11 -d 20.20.20.0/24 --sport 443 -j ACCEPT
 \end{lstlisting}
 
 \section{} %3
