@@ -48,6 +48,11 @@ iptables -o <interface> --append OUTPUT --protocol tcp --destination 1.2.3.4 --d
 iptables -i <interface> --append INPUT --protocol tcp --source 1.2.3.4 --sport 993 --jump ACCEPT
 # allow secured outgoing IMAP
 iptables -o <interface> --append OUTPUT --protocol tcp --destination 1.2.3.4 --dport 993 --jump ACCEPT
+
+# allow incoming ICMP replies
+iptables -i <interface> --append INPUT --protocol icmp --icmp-type 0 --jump ACCEPT
+# allow outgoing ICMP requests
+iptables -o <interface> --append OUTPUT --protocol icmp --icmp-type 8 --jump ACCEPT
 	\end{lstlisting}
 	\item %b
 	\item %c
