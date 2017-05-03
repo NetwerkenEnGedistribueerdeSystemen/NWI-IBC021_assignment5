@@ -116,6 +116,9 @@ iptables -i <interface> --append INPUT --protocol tcp --destination 200.123.123.
 \section{} %5
 \begin{enumerate}[a]
 	\item %a
+	Each package in SSL is digitally signed, meaning a hash of the message is encrypted and sent with the message. This prevents third parties from inserting packets into the stream.
+
+	If Eve inserts a bogus packet, she cannot generate the digital signature. The receiving client hashed the message, decrypts the digital signature and compares the two. They do not match and the packet is dropped.
 	\item %b
 \end{enumerate}
 
